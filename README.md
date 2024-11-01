@@ -2,7 +2,7 @@
 
 <div align="center">
   <a href="https://discord.gg/madison">
-    <img alt="Discord" src="https://img.shields.io/discord/550477546958094348?color=%237289da&label=DISCORD&logo=Discord&style=for-the-badge">
+    <img alt="Discord" src="https://img.shields.io/discord/1215429092598349945?color=%237289da&label=DISCORD&logo=Discord&style=for-the-badge">
   </a>
   <a href="https://patreon.com/cassou">
     <img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fshieldsio-patreon.vercel.app%2Fapi%3Fusername%3Dpoiyomi%26type%3Dpatrons&style=for-the-badge" alt="Support Cassou on Patreon">
