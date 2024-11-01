@@ -1,5 +1,28 @@
 # VANITY-ANTICHEAT
 
+<div align=center class=flex>
+  <img height="125" alt="Poi Documentation" src="https://www.poiyomi.com/img/logo.svg">
+  <br><br>
+  <a href="https://discord.gg/poiyomi">
+    <img alt="Discord" src="https://img.shields.io/discord/550477546958094348?color=%237289da&label=DISCORD&logo=Discord&style=for-the-badge">
+  </a>
+  <a href="https://patreon.com/poiyomi">
+    <img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fshieldsio-patreon.vercel.app%2Fapi%3Fusername%3Dpoiyomi%26type%3Dpatrons&style=for-the-badge" alt="Support Poiyomi on Patreon">
+  </a>
+  <a href="https://poiyomi.com/">
+    <img alt="Website" src="https://img.shields.io/website?down_color=ff2244&down_message=poiyomi.com&label=DOCUMENTATION&style=for-the-badge&up_color=E7BF2A&up_message=poiyomi.com&url=http%3A%2F%2Fpoiyomi.com%2F">
+  </a>
+  <a href="https://github.com/poiyomi/PoiyomiToonShader/blob/master/LICENSE">
+    <img alt="GitHub" src="https://img.shields.io/github/license/Poiyomi/PoiyomiToonShader?color=1BB7E4&style=for-the-badge">
+  </a>
+  <a href="https://github.com/poiyomi/PoiyomiToonShader/releases/latest">
+    <img alt="GitHub tag (latest by date)" src="https://img.shields.io/github/v/tag/Poiyomi/PoiyomiToonShader?color=F05A7A&label=RELEASE&style=for-the-badge">
+  </a>
+  <img alt="GitHub all releases" src="https://img.shields.io/github/downloads/poiyomi/PoiyomiToonShader/total?style=for-the-badge">
+</div>
+<br>
+<div align=center>
+
 **Created by:** Luvmadison  
 **Version:** 1.0.2
 **License:** Non-modifiable
