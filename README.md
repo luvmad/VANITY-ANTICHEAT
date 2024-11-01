@@ -1,7 +1,7 @@
 # VANITY-ANTICHEAT
 
 **Created by:** Luvmadison  
-**Version:** 1.0  
+**Version:** 1.0.2
 **License:** Non-modifiable
 
 ## Description
