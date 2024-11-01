@@ -1,17 +1,19 @@
 # VANITY-ANTICHEAT
 
-  <a href="[https://discord.gg/madison](https://discord.gg/fWhAMydGj9)">
+<div align="center">
+  <a href="https://discord.gg/madison">
     <img alt="Discord" src="https://img.shields.io/discord/550477546958094348?color=%237289da&label=DISCORD&logo=Discord&style=for-the-badge">
   </a>
   <a href="https://patreon.com/cassou">
     <img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fshieldsio-patreon.vercel.app%2Fapi%3Fusername%3Dpoiyomi%26type%3Dpatrons&style=for-the-badge" alt="Support Cassou on Patreon">
+  </a>
   <a href="https://github.com/CassouBrxn/VANITY-ANTICHEAT/releases/latest">
     <img alt="GitHub tag (latest by date)" src="https://img.shields.io/github/v/tag/CassouBrxn/VANITY-ANTICHEAT?color=F05A7A&label=RELEASE&style=for-the-badge">
   </a>
   <img alt="GitHub all releases" src="https://img.shields.io/github/downloads/CassouBrxn/VANITY-ANTICHEAT/total?style=for-the-badge">
 </div>
 <br>
-<div align=center>
+
 
 **Created by:** Luvmadison  
 **Version:** 1.0.2
