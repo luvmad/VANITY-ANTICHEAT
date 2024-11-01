@@ -1,4 +1,4 @@
-Here’s a security policy tailored for your script, including sections for supported versions and reporting vulnerabilities:
+Here’s the complete security policy with your modifications for the reporting channel and additional adjustments:
 
 # Security Policy
 
@@ -16,7 +16,7 @@ This section outlines the versions of the VANITY-ANTICHEAT script that are curre
 If you discover a vulnerability in the VANITY-ANTICHEAT script, please report it as follows:
 
 1. **How to Report:**
-   - Join my discord [discord](https://discord.gg/fWhAMydGj9)
+   - Join my Discord: [discord](https://discord.gg/fWhAMydGj9)
 
 2. **Information to Include:**
    - A clear description of the vulnerability, including steps to reproduce it.
