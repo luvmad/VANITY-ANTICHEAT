@@ -1,6 +1,6 @@
 # VANITY-ANTICHEAT
 
-  <a href="https://discord.gg/madison">
+  <a href="[https://discord.gg/madison](https://discord.gg/fWhAMydGj9)">
     <img alt="Discord" src="https://img.shields.io/discord/550477546958094348?color=%237289da&label=DISCORD&logo=Discord&style=for-the-badge">
   </a>
   <a href="https://patreon.com/cassou">
