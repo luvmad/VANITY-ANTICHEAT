@@ -47,7 +47,3 @@
 ## Support
 
 For any issues or questions regarding the `VANITY-ANTICHEAT` script, please reach out to the author: **Luvmadison**.
-
-## Disclaimer
-
-This script is intended for educational and anti-cheat purposes only. The author is not responsible for any misuse or consequences arising from its implementation.
