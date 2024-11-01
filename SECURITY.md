@@ -1,5 +1,3 @@
-Here’s the complete security policy with your modifications for the reporting channel and additional adjustments:
-
 # Security Policy
 
 ## Supported Versions
