@@ -1,6 +1,6 @@
 # VANITY-ANTICHEAT
 
-https://cdn.discordapp.com/attachments/1280308180148158485/1301971050996957306/download_2.png?ex=67266a88&is=67251908&hm=1a40994f983c4d29c62144ef7211d5b480e5fe929cabd150705234b7279cceb1&
+![Alt text](https://cdn.discordapp.com/attachments/1280308180148158485/1301972617821032498/vanity.png?ex=67266bfd&is=67251a7d&hm=16f8dcac7142ecbc7751d4b937569943cdd9badb15f508621e1ddd0e6f069f8c&)
 
 <div align="center">
   <a href="https://discord.gg/madison">
