@@ -5,7 +5,6 @@
   </a>
   <a href="https://patreon.com/cassou">
     <img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fshieldsio-patreon.vercel.app%2Fapi%3Fusername%3Dpoiyomi%26type%3Dpatrons&style=for-the-badge" alt="Support Cassou on Patreon">
-  </a>
   <a href="https://github.com/CassouBrxn/VANITY-ANTICHEAT/releases/latest">
     <img alt="GitHub tag (latest by date)" src="https://img.shields.io/github/v/tag/CassouBrxn/VANITY-ANTICHEAT?color=F05A7A&label=RELEASE&style=for-the-badge">
   </a>
