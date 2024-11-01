@@ -47,3 +47,5 @@
 ## Support
 
 For any issues or questions regarding the `VANITY-ANTICHEAT` script, please reach out to the author: **Luvmadison**.
+
+https://raw.githubusercontent.com/mayhemantt/mayhemantt/Update/svg/Bottom.svg
