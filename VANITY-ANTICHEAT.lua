@@ -2,6 +2,8 @@
 -- This script is strictly non-editable.
 -- Any attempt to circumvent or modify this script may lead to sanctions.
 
+local CONFIG = require(script.Parent:WaitForChild("VANITY-ANTICHEAT-CONFIG")) -- Load configuration
+
 local ANTI_CHEAT_NAME = "VANITY-ANTICHEAT"
 local ANTI_CHEAT_AUTHOR = "Luvmadison"
 local CURRENT_VERSION = "1.0"  -- Current version of the script
@@ -13,15 +15,17 @@ print(ANTI_CHEAT_NAME .. " by " .. ANTI_CHEAT_AUTHOR .. " initialized")
 --         Configuration
 -- ================================
 
-local DISCORD_WEBHOOK_URL = "https://discord.com/api/webhooks/YOUR_WEBHOOK_URL"  -- Replace with your actual webhook URL
-local SPEED_LIMIT = 50           -- Maximum allowed speed
-local DAMAGE_THRESHOLD = 100     -- Maximum allowed damage
-local TELEPORT_DISTANCE = 50     -- Maximum allowed teleport distance
-local JUMP_HEIGHT_LIMIT = 100    -- Maximum allowed jump height
-local GRAVITY = Workspace.Gravity -- Expected gravity in the game
-local HEARTBEAT_INTERVAL = 5     -- Interval for heartbeat checks in seconds
-local TRIGGER_THRESHOLD = 10     -- Max allowed trigger per second for critical actions
-local BAN_DURATION = 30 * 24 * 3600  -- Ban duration in seconds (e.g., 30 days)
+local DISCORD_WEBHOOK_URL = CONFIG.DISCORD_WEBHOOK_URL
+local SPEED_LIMIT = CONFIG.SPEED_LIMIT
+local DAMAGE_THRESHOLD = CONFIG.DAMAGE_THRESHOLD
+local TELEPORT_DISTANCE = CONFIG.TELEPORT_DISTANCE
+local JUMP_HEIGHT_LIMIT = CONFIG.JUMP_HEIGHT_LIMIT
+local GRAVITY = CONFIG.GRAVITY
+local HEARTBEAT_INTERVAL = CONFIG.HEARTBEAT_INTERVAL
+local TRIGGER_THRESHOLD = CONFIG.TRIGGER_THRESHOLD
+local BAN_DURATION = CONFIG.BAN_DURATION
+local REPUTATION_MAX = CONFIG.REPUTATION_MAX
+local REPUTATION_MIN = CONFIG.REPUTATION_MIN
 
 -- ================================
 --        Version Check
@@ -52,9 +56,30 @@ checkForUpdates()
 --        Utility Functions
 -- ================================
 
+-- Function to log events to a file
+local function logToFile(message)
+    local logFile = Instance.new("File", game.ServerStorage) -- Create a file in ServerStorage
+    logFile.Name = "AntiCheatLog.txt"
+    local logData = os.date("%Y-%m-%d %H:%M:%S") .. " - " .. message .. "\n"
+    logFile:Write(logData) -- Write the message to the file
+end
+
 -- Generate a pseudo "HWID" based on available data
 local function generateHWID(player)
     return tostring(player.UserId) .. "_" .. tostring(player.AccountAge)
+end
+
+-- Function to alert administrators
+local function alertAdmins(message)
+    local adminUserIds = {12345678, 87654321} -- Replace with the UserIds of the administrators
+    for _, adminId in ipairs(adminUserIds) do
+        local admin = Players:GetPlayerByUserId(adminId)
+        if admin then
+            sendToDiscord(admin, message) -- Send a message to the administrator
+            -- Send a real-time notification
+            notificationEvent:FireClient(admin, message)
+        end
+    end
 end
 
 -- Function to send log messages to Discord
@@ -73,7 +98,13 @@ local function sendToDiscord(player, reason)
     }
 
     local jsonData = HttpService:JSONEncode(data)
-    HttpService:PostAsync(DISCORD_WEBHOOK_URL, jsonData, Enum.HttpContentType.ApplicationJson)
+    local success, response = pcall(function()
+        HttpService:PostAsync(DISCORD_WEBHOOK_URL, jsonData, Enum.HttpContentType.ApplicationJson)
+    end)
+
+    if not success then
+        logEvent("Failed to send log to Discord: " .. tostring(response))  -- Log the error
+    end
 end
 
 -- Function to ban a player by storing their "HWID" or UserId in the DataStore
@@ -117,14 +148,73 @@ local function isPlayerBanned(player)
 end
 
 -- ================================
+--        Reputation System
+-- ================================
+
+local reputationStore = game:GetService("DataStoreService"):GetDataStore("PlayerReputation")
+
+-- Function to get a player's reputation
+local function getReputation(player)
+    local success, reputation = pcall(function()
+        return reputationStore:GetAsync("Player_" .. player.UserId)
+    end)
+    return success and reputation or 0 -- Default value if no reputation is found
+end
+
+-- Function to update a player's reputation
+local function updateReputation(player, change)
+    local currentReputation = getReputation(player)
+    local newReputation = math.clamp(currentReputation + change, REPUTATION_MIN, REPUTATION_MAX) -- Limit reputation
+
+    local success, errorMessage = pcall(function()
+        reputationStore:SetAsync("Player_" .. player.UserId, newReputation)
+    end)
+
+    if not success then
+        logEvent("Failed to update reputation for player " .. player.Name .. ": " .. errorMessage)
+    end
+end
+
+-- ================================
+--        Temporary Ban System
+-- ================================
+
+local function temporaryBanPlayer(player, reason, duration)
+    local banData = {
+        reason = reason,
+        bannedAt = os.time(),
+        banDuration = duration
+    }
+
+    -- Register the temporary ban in the DataStore
+    bannedPlayersStore:SetAsync("TempBan_" .. player.UserId, banData)
+
+    -- Ban the player
+    player:Kick("You have been temporarily banned for: " .. reason .. ". Duration: " .. duration .. " seconds.")
+
+    -- Reinstate the player after the ban duration
+    wait(duration)
+    bannedPlayersStore:RemoveAsync("TempBan_" .. player.UserId) -- Remove the ban after the duration
+end
+
+-- ================================
 --        Cheating Detection
 -- ================================
 
 -- Logs and bans player on repeated offenses
 local function logAndHandleCheat(player, reason)
+    local message = "Player " .. player.Name .. " detected for: " .. reason
+    logEvent(message)  -- Log the event
+    logToFile(message)  -- Log to the file
     sendToDiscord(player, reason)
-    banPlayer(player, reason)
-    player:Kick("You have been banned for cheating: " .. reason)
+    alertAdmins("Suspicious activity detected from player: " .. player.Name .. " for reason: " .. reason) -- Alert admins
+
+    -- Apply a temporary ban for minor infractions
+    if reason == "Unauthorized damage detected" then
+        temporaryBanPlayer(player, reason, 60) -- Ban for 60 seconds
+    else
+        banPlayer(player, reason) -- Permanent ban for serious infractions
+    end
 end
 
 -- Anti-Executor Heartbeat with anti-interference detection
@@ -216,9 +306,9 @@ end
 
 -- Function to check if gravity is altered
 local function monitorGravity()
-    Workspace:GetPropertyChangedSignal("Gravity"):Connect(function()
-        if Workspace.Gravity ~= GRAVITY then
-            Workspace.Gravity = GRAVITY -- Reset gravity to default
+    workspace:GetPropertyChangedSignal("Gravity"):Connect(function()
+        if workspace.Gravity ~= GRAVITY then
+            workspace.Gravity = GRAVITY -- Reset gravity to default
             warn("Anti-Cheat: Gravity manipulation detected. Resetting gravity.")
         end
     end)
@@ -227,11 +317,43 @@ end
 monitorGravity()
 
 -- ================================
+--        External Script Detection
+-- ================================
+
+local function detectExternalScripts(player)
+    local character = player.Character
+    if character then
+        local humanoidRootPart = character:FindFirstChild("HumanoidRootPart")
+
+        -- Vérification de la vitesse du joueur
+        humanoidRootPart:GetPropertyChangedSignal("Velocity"):Connect(function()
+            if humanoidRootPart.Velocity.Magnitude > SPEED_LIMIT then
+                logAndHandleCheat(player, "Speed hacking detected (external script suspected)")
+            end
+        end)
+
+        -- Vérification de la position du joueur
+        humanoidRootPart:GetPropertyChangedSignal("Position"):Connect(function()
+            local currentPosition = humanoidRootPart.Position
+            -- Implémentez une logique pour vérifier si la position est anormale
+            if currentPosition.Y > 1000 then -- Exemple de vérification
+                logAndHandleCheat(player, "Unusual position detected (external script suspected)")
+            end
+        end)
+
+        -- Vérification des RemoteEvents
+        player.DamageEvent.OnServerEvent:Connect(function()
+            logEvent("RemoteEvent called by player: " .. player.Name)
+        end)
+    end
+end
+
+-- ================================
 --        Player Monitoring
 -- ================================
 
--- Main player monitoring function
 Players.PlayerAdded:Connect(function(player)
+    logEvent("Player " .. player.Name .. " has joined the game.")  -- Connection notification
     local isBanned, banReason = isPlayerBanned(player)
     if isBanned then
         player:Kick("You are banned from this game. Reason: " .. banReason)
@@ -239,6 +361,8 @@ Players.PlayerAdded:Connect(function(player)
     end
 
     monitorHeartbeat(player)
+    monitorPlayerActions(player)  -- Monitor player actions
+    detectExternalScripts(player)  -- Detect external scripts
 
     player.CharacterAdded:Connect(function(character)
         monitorCharacter(player)
@@ -253,5 +377,91 @@ Players.PlayerAdded:Connect(function(player)
         end
     end)
 end)
+
+-- ================================
+--        Admin Commands
+-- ================================
+
+local function banPlayerByAdmin(admin, playerName, reason)
+    local player = Players:FindFirstChild(playerName)
+    if player then
+        banPlayer(player, reason)
+        logEvent("Admin " .. admin.Name .. " has banned player: " .. player.Name .. " for reason: " .. reason)
+    else
+        logEvent("Player " .. playerName .. " not found for admin " .. admin.Name)
+    end
+end
+
+local function unbanPlayerByAdmin(admin, playerName)
+    logEvent("Admin " .. admin.Name .. " has unbanned player: " .. playerName)
+end
+
+-- ================================
+--        Player Action Logging
+-- ================================
+
+-- Function to log player actions
+local function logPlayerAction(player, action)
+    local message = "Player " .. player.Name .. " performed action: " .. action
+    logEvent(message)  -- Log to console
+    logToFile(message)  -- Log to file
+end
+
+-- Example of logging movements
+local function monitorPlayerActions(player)
+    local character = player.Character
+    if character then
+        local humanoidRootPart = character:FindFirstChild("HumanoidRootPart")
+
+        humanoidRootPart:GetPropertyChangedSignal("Position"):Connect(function()
+            logPlayerAction(player, "Moved to position: " .. tostring(humanoidRootPart.Position))
+        end)
+
+        humanoidRootPart:GetPropertyChangedSignal("Velocity"):Connect(function()
+            logPlayerAction(player, "Velocity changed to: " .. tostring(humanoidRootPart.Velocity))
+        end)
+
+        -- Add other events to monitor here
+    end
+end
+
+-- ================================
+--        Data Integrity Check
+-- ================================
+
+-- Function to check player data integrity
+local function checkDataIntegrity(player)
+    logEvent("Checking data integrity for player: " .. player.Name)
+    -- Implement specific checks here
+end
+
+-- Create RemoteEvent for notifications
+local notificationEvent = Instance.new("RemoteEvent")
+notificationEvent.Name = "AdminNotification"
+notificationEvent.Parent = ReplicatedStorage
+
+-- ================================
+--        Advanced Moderation Commands
+-- ================================
+
+local function monitorPlayer(admin, playerName)
+    local player = Players:FindFirstChild(playerName)
+    if player then
+        logEvent("Admin " .. admin.Name .. " is monitoring player: " .. player.Name)
+    else
+        logEvent("Player " .. playerName .. " not found for admin " .. admin.Name)
+    end
+end
+
+local function suspendPlayer(admin, playerName, duration)
+    local player = Players:FindFirstChild(playerName)
+    if player then
+        logEvent("Admin " .. admin.Name .. " has suspended player: " .. player.Name .. " for " .. duration .. " seconds.")
+        player:Kick("You have been temporarily suspended by an admin for " .. duration .. " seconds.")
+        wait(duration) -- Wait for the duration of the suspension
+    else
+        logEvent("Player " .. playerName .. " not found for admin " .. admin.Name)
+    end
+end
 
 -- End of VANITY-ANTICHEAT created by Luvmadison
