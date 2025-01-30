@@ -4,10 +4,10 @@
   <a href="https://discord.gg/madison">
     <img alt="Discord" src="https://img.shields.io/discord/1215429092598349945?color=%237289da&label=DISCORD&logo=Discord&style=for-the-badge">
   </a>
-  <a href="https://github.com/CassouBrxn/VANITY-ANTICHEAT/releases/latest">
-    <img alt="GitHub tag (latest by date)" src="https://img.shields.io/github/v/tag/CassouBrxn/VANITY-ANTICHEAT?color=F05A7A&label=RELEASE&style=for-the-badge">
+  <a href="https://github.com/luvmad/VANITY-ANTICHEAT/releases/latest">
+    <img alt="GitHub tag (latest by date)" src="https://img.shields.io/github/v/tag/luvmad/VANITY-ANTICHEAT?color=F05A7A&label=RELEASE&style=for-the-badge">
   </a>
-  <img alt="GitHub all releases" src="https://img.shields.io/github/downloads/CassouBrxn/VANITY-ANTICHEAT/total?style=for-the-badge">
+  <img alt="GitHub all releases" src="https://img.shields.io/github/downloads/luvmad/VANITY-ANTICHEAT/total?style=for-the-badge">
 </div>
 <br>
 
