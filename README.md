@@ -1,7 +1,7 @@
 # VANITY-ANTICHEAT v2.5
 
 <div align="center">
-  <a href="https://discord.gg/madison">
+  <a href="[https://discord.gg/madison](https://discord.gg/fWhAMydGj9)">
     <img alt="Discord" src="https://img.shields.io/discord/1215429092598349945?color=%237289da&label=DISCORD&logo=Discord&style=for-the-badge">
   </a>
   <a href="https://github.com/luvmad/VANITY-ANTICHEAT/releases/latest">
@@ -277,25 +277,13 @@ CONFIG.BATCH_SIZE = 10
 
 For support or inquiries about VANITY-ANTICHEAT, please contact:
 - Developer: Luvmadison
-- Discord: [Join our Discord server](https://discord.gg/madison)
+- Discord: [Join our Discord server]([https://discord.gg/madison](https://discord.gg/fWhAMydGj9))
 - Version: 2.5
-- Last Updated: [Current Date]
+- Last Updated: [2025-03-17]
 
 ## License
 
 This anti-cheat system is proprietary software. Any unauthorized modification, distribution, or use is strictly prohibited and may result in legal action.
-
-<p align="center">
-<div align="center">
-  <a href="https://discord.gg/madison">
-    <img alt="Discord" src="https://img.shields.io/discord/1215429092598349945?color=%237289da&label=DISCORD&logo=Discord&style=for-the-badge">
-  </a>
-  <a href="https://github.com/luvmad/VANITY-ANTICHEAT/releases/latest">
-    <img alt="GitHub tag (latest by date)" src="https://img.shields.io/github/v/tag/luvmad/VANITY-ANTICHEAT?color=F05A7A&label=RELEASE&style=for-the-badge">
-  </a>
-  <img alt="GitHub all releases" src="https://img.shields.io/github/downloads/luvmad/VANITY-ANTICHEAT/total?style=for-the-badge">
-</div>
-<br>
 
 **Created by:** Luvmadison  
 **Version:** 2.0.0  
