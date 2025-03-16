@@ -279,7 +279,7 @@ For support or inquiries about VANITY-ANTICHEAT, please contact:
 - Developer: Luvmadison
 - Discord: [Join our Discord server](https://discord.gg/madison)
 - Version: 2.5
-- Last Updated: [Current Date]
+- Last Updated: [2025-03-17]
 
 ## License
 
