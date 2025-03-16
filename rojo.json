@@ -1,0 +1,30 @@
+{
+    "name": "VANITY-ANTICHEAT",
+    "tree": {
+        "$className": "DataModel",
+        "ReplicatedStorage": {
+            "$className": "ReplicatedStorage",
+            "VANITY-ANTICHEAT": {
+                "$path": "src"
+            }
+        },
+        "ServerScriptService": {
+            "$className": "ServerScriptService",
+            "VANITY-ANTICHEAT-SERVER": {
+                "$path": "server"
+            }
+        },
+        "StarterGui": {
+            "$className": "StarterGui",
+            "VANITY-ANTICHEAT-CLIENT": {
+                "$path": "client"
+            }
+        },
+        "SoundService": {
+            "$className": "SoundService",
+            "VANITY-ANTICHEAT-SOUNDS": {
+                "$path": "sounds"
+            }
+        }
+    }
+} 
