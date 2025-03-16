@@ -1,52 +1,138 @@
-# Security Policy
+# VANITY-ANTICHEAT Security Policy
 
 ## Supported Versions
 
-This section outlines the versions of the VANITY-ANTICHEAT script that are currently supported with security updates.
+This section outlines the versions of VANITY-ANTICHEAT that are currently supported with security updates.
 
 | Version   | Supported          |
 |-----------|--------------------|
+| 2.5.x     | :white_check_mark: |
 | 2.0.x     | :white_check_mark: |
 | < 2.0     | :x:                |
 
 ## Security Features
 
-The VANITY-ANTICHEAT system includes several security features to protect against cheating and exploitation:
+VANITY-ANTICHEAT incorporates advanced security features to protect against cheating and exploitation:
 
-- **Player Monitoring**: Monitors player actions and detects suspicious behavior, such as speed hacking and unauthorized damage.
-- **Temporary and Permanent Bans**: Allows administrators to temporarily ban players for minor infractions and permanently ban for serious offenses.
-- **Reputation System**: Tracks player reputation and adjusts it based on behavior, allowing for a more dynamic response to player actions.
-- **Network Optimization**: Measures latency and optimizes player connections to ensure a smooth gaming experience.
-- **External Script Detection**: Monitors for the use of external scripts and injectors, alerting administrators if detected.
+### Player Monitoring
+- Real-time behavioral analysis
+- Anomaly detection with scoring system
+- Movement and speed monitoring
+- Combat action validation
+- Unauthorized teleportation detection
 
-## Reporting a Vulnerability
+### Combat System
+- Damage and critical hit validation
+- Aimbot detection
+- Combat pattern monitoring
+- Weapon range verification
+- Shot accuracy analysis
 
-If you discover a vulnerability in the VANITY-ANTICHEAT script, please report it as follows:
+### Physics Validation
+- Gravity monitoring
+- Velocity validation
+- Collision verification
+- Object size control
+- Player physics state validation
 
-1. **How to Report:**
-   - Join my Discord: [discord](https://discord.gg/fWhAMydGj9)
+### Network Security
+- Communication encryption
+- Request spam protection
+- Packet validation
+- Network exploit detection
+- Bandwidth optimization
 
-2. **Information to Include:**
-   - A clear description of the vulnerability, including steps to reproduce it.
-   - The version of the script you are using.
-   - Any additional context that may be helpful in understanding the issue.
+### Ban System
+- Temporary and permanent bans
+- Progressive warning system
+- Secure ban data storage
+- Integrated appeal system
+- Redundant data backup
 
-3. **Response Time:**
-   - You can expect an acknowledgment of your report within 48 hours.
-   - We will keep you updated on the status of your report every week until it is resolved.
+### Admin Interface
+- Monitoring dashboard
+- Real-time notifications
+- Detailed logging system
+- Moderation tools
+- Security statistics
 
-4. **After Reporting:**
-   - If the vulnerability is confirmed, we will work on a fix and release an update as soon as possible.
-   - If the vulnerability is not accepted, we will provide feedback on the reasons for our decision.
+### Anti-Exploit Protection
+- External script detection
+- Instance validation
+- Memory modification protection
+- Integrity verification
+- Remote event monitoring
 
-## Best Practices for Security
+## Security Thresholds
 
-To maintain the security of the VANITY-ANTICHEAT system, please follow these best practices:
+### Movement
+- Maximum speed: 50
+- Maximum vertical speed: 100
+- Acceleration limit: 50
+- Maximum rotation speed: 720°/s
+- Maximum teleport distance: 1000
 
-- **Keep Your Scripts Updated**: Always use the latest version of the VANITY-ANTICHEAT scripts to benefit from security updates and improvements.
-- **Monitor Player Behavior**: Regularly check player behavior and reputation to identify potential cheaters.
-- **Use Strong Webhook URLs**: Ensure that your Discord webhook URL is kept secret and not exposed in public repositories.
-- **Test for Vulnerabilities**: Regularly test your implementation for vulnerabilities and ensure that all security features are functioning as intended.
-- **Educate Your Team**: Make sure that all team members understand the importance of security and how to report issues.
+### Combat
+- Maximum damage per second: 200
+- Minimum hit interval: 0.1s
+- Maximum hits per second: 10
+- Maximum range multiplier: 1.5
 
-Thank you for helping us maintain the security of the VANITY-ANTICHEAT script. Your contributions are invaluable in making our project safer for all users!
+### Network
+- Rate limit window: 60s
+- Maximum packet size: 100KB
+- Minimum request interval: 0.1s
+- Network timeout: 5s
+- Maximum concurrent requests: 10
+
+## Vulnerability Reporting
+
+### Reporting Process
+1. Join our Discord: [VANITY-ANTICHEAT Discord](https://discord.gg/madison)
+2. Use the #security-report channel
+3. Follow the provided report template
+
+### Required Information
+- Detailed vulnerability description
+- Steps to reproduce
+- VANITY-ANTICHEAT version
+- Relevant logs
+- Potential impact
+
+### Response Times
+- Acknowledgment: 24 hours
+- Initial assessment: 48 hours
+- Status updates: weekly
+- Fix deployment: based on severity (24h to 7 days)
+
+## Security Best Practices
+
+### Configuration
+- Always use the latest version
+- Properly configure Discord webhooks
+- Enable all security modules
+- Set appropriate thresholds
+- Maintain up-to-date backups
+
+### Administration
+- Regularly monitor dashboard
+- Check logs daily
+- Respond quickly to critical alerts
+- Maintain updated whitelist
+- Document security incidents
+
+### Maintenance
+- Perform regular audits
+- Test new features
+- Update configurations
+- Clean old data
+- Verify system integrity
+
+## Contact
+
+- Developer: Luvmadison
+- Discord: [Join](https://discord.gg/madison)
+- Current Version: 2.5
+- Support: 24/7 via Discord
+
+Thank you for contributing to VANITY-ANTICHEAT's security. Your vigilance helps maintain a fair and secure gaming environment for all users.
