@@ -88,7 +88,7 @@ VANITY-ANTICHEAT incorporates advanced security features to protect against chea
 ## Vulnerability Reporting
 
 ### Reporting Process
-1. Join our Discord: [VANITY-ANTICHEAT Discord](https://discord.gg/madison)
+1. Join our Discord: [VANITY-ANTICHEAT Discord]([https://discord.gg/madison](https://discord.gg/fWhAMydGj9))
 2. Use the #security-report channel
 3. Follow the provided report template
 
@@ -131,7 +131,7 @@ VANITY-ANTICHEAT incorporates advanced security features to protect against chea
 ## Contact
 
 - Developer: Luvmadison
-- Discord: [Join](https://discord.gg/madison)
+- Discord: [Join]([https://discord.gg/madison](https://discord.gg/fWhAMydGj9))
 - Current Version: 2.5
 - Support: 24/7 via Discord
 
