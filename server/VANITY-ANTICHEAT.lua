@@ -412,28 +412,46 @@ Players.PlayerRemoving:Connect(function(player)
 end)
 
 -- Interface d'administration sécurisée
-return {
-    getStats = function()
-        return {
-            totalDetections = stats.totalDetections,
-            activeMonitoring = stats.activeMonitoring,
-            bannedPlayers = stats.bannedPlayers,
-            suspendedPlayers = stats.suspendedPlayers,
-            totalViolations = stats.totalViolations,
-            exploitAttempts = stats.exploitAttempts,
-            falsePositives = stats.falsePositives,
-            serverUptime = os.time() - stats.serverUptime,
-            detectionRates = stats.detectionRates,
-            serverLoad = stats.serverLoad
-        }
-    end,
-    getPlayerViolations = function(userId)
-        return violationTracking.players[userId] and violationTracking.players[userId].violations or {}
-    end,
-    getAnomalyScore = function(userId)
-        return detectionSystem.anomalyScores[userId] or 0
-    end,
-    banPlayer = banPlayer,
-    getNetworkStats = NetworkOptimizer.getNetworkStats,
-    verifyIntegrity = verifyScriptIntegrity
-}
+local VanityAntiCheat = {}
+
+function VanityAntiCheat.init()
+    print("[VANITY-ANTICHEAT] Initializing...")
+    -- Code d'initialisation
+end
+
+function VanityAntiCheat.getStats()
+    return {
+        totalDetections = stats.totalDetections,
+        activeMonitoring = stats.activeMonitoring,
+        bannedPlayers = stats.bannedPlayers,
+        suspendedPlayers = stats.suspendedPlayers,
+        totalViolations = stats.totalViolations,
+        exploitAttempts = stats.exploitAttempts,
+        falsePositives = stats.falsePositives,
+        serverUptime = os.time() - stats.serverUptime,
+        detectionRates = stats.detectionRates,
+        serverLoad = stats.serverLoad
+    }
+end
+
+function VanityAntiCheat.getPlayerViolations(userId)
+    return violationTracking.players[userId] and violationTracking.players[userId].violations or {}
+end
+
+function VanityAntiCheat.getAnomalyScore(userId)
+    return detectionSystem.anomalyScores[userId] or 0
+end
+
+function VanityAntiCheat.banPlayer(player, reason)
+    banPlayer(player, reason)
+end
+
+function VanityAntiCheat.getNetworkStats()
+    return NetworkOptimizer.getNetworkStats()
+end
+
+function VanityAntiCheat.verifyIntegrity()
+    verifyScriptIntegrity()
+end
+
+return VanityAntiCheat

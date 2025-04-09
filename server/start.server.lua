@@ -4,7 +4,15 @@ local ServerScriptService = game:GetService("ServerScriptService")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
 -- Wait for services to be ready
-local vanityAntiCheatServer = require(script.Parent)
+local success, vanityAntiCheatServer = pcall(function()
+    return require(script.Parent) -- Assurez-vous que cela pointe vers le bon module
+end)
+
+if not success then
+    warn("Failed to load VANITY-ANTICHEAT: " .. tostring(vanityAntiCheatServer))
+    return
+end
+
 local vanityAntiCheat = ReplicatedStorage:WaitForChild("VANITY-ANTICHEAT")
 
 -- Initialize anti-cheat
